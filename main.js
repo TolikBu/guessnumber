@@ -1,26 +1,28 @@
 "use strict";
 
-function play(a) {
-   return function (item) {
-    if (isNaN(item)) {
+function play() {
+  return function check(item) {
+    const userNum = prompt("Угадайте число от 1 до 100");
+    if (isNaN(userNum)) {
       alert("Введите число");
-      
-    }  else if (item > a) {
-      prompt("Загаданное число меньше", "Введите новое число");
-      
-    } else if (item < a) {
-      prompt("Загаданное число больше", "Введите новое число");
-      
-    } else if (item == a) {
+      return check(item);
+      // return;
+    } else if (userNum > item) {
+      alert("Загаданное число меньше");
+      return check(item);
+      // return;
+    } else if (userNum < item) {
+      alert("Загаданное число больше");
+      return check(item);
+      // return;
+    } else if (userNum == item) {
       confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
-    }else if (item == null) {
+    } else if (userNum === null) {
       alert("Игра окончена");
-    } 
-  console.log(item);
+      console.log(userNum);
+    }
   };
-  
-  
 }
 
-const game = play(50);
-game(prompt("Угадай число от 1 до 100"));
+const game = play();
+game(50);
